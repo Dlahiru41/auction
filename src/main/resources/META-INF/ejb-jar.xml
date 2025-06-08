@@ -1,0 +1,105 @@
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+         version="3.1">
+
+    <display-name>Auction System EJB Module</display-name>
+
+    <enterprise-beans>
+
+        <!-- Session Beans -->
+        <session>
+            <ejb-name>UserSessionBean</ejb-name>
+            <ejb-class>com.auction.session.UserSessionBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <session>
+            <ejb-name>AuctionSessionBean</ejb-name>
+            <ejb-class>com.auction.session.AuctionSessionBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <session>
+            <ejb-name>BidSessionBean</ejb-name>
+            <ejb-class>com.auction.session.BidSessionBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <!-- Singleton Session Bean -->
+        <session>
+            <ejb-name>AuctionManagerSingleton</ejb-name>
+            <ejb-class>com.auction.session.AuctionManagerSingleton</ejb-class>
+            <session-type>Singleton</session-type>
+            <init-on-startup>true</init-on-startup>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+
+        <!-- Message-Driven Beans with WildFly-specific configuration -->
+        <message-driven>
+            <ejb-name>BidNotificationMDB</ejb-name>
+            <ejb-class>com.auction.messaging.BidNotificationMDB</ejb-class>
+            <messaging-type>javax.jms.MessageListener</messaging-type>
+            <transaction-type>Container</transaction-type>
+
+            <!-- WildFly-specific activation configuration -->
+            <activation-config>
+                <activation-config-property>
+                    <activation-config-property-name>destinationType</activation-config-property-name>
+                    <activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+                </activation-config-property>
+                <activation-config-property>
+                    <activation-config-property-name>destination</activation-config-property-name>
+                    <activation-config-property-value>java:/jms/topic/BidTopic</activation-config-property-value>
+                </activation-config-property>
+                <!-- Specify resource adapter for WildFly -->
+                <activation-config-property>
+                    <activation-config-property-name>resourceAdapter</activation-config-property-name>
+                    <activation-config-property-value>activemq-ra</activation-config-property-value>
+                </activation-config-property>
+            </activation-config>
+        </message-driven>
+
+        <message-driven>
+            <ejb-name>AuctionEventMDB</ejb-name>
+            <ejb-class>com.auction.messaging.AuctionEventMDB</ejb-class>
+            <messaging-type>javax.jms.MessageListener</messaging-type>
+            <transaction-type>Container</transaction-type>
+
+            <activation-config>
+                <activation-config-property>
+                    <activation-config-property-name>destinationType</activation-config-property-name>
+                    <activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+                </activation-config-property>
+                <activation-config-property>
+                    <activation-config-property-name>destination</activation-config-property-name>
+                    <activation-config-property-value>java:/jms/queue/AuctionEventQueue</activation-config-property-value>
+                </activation-config-property>
+                <activation-config-property>
+                    <activation-config-property-name>resourceAdapter</activation-config-property-name>
+                    <activation-config-property-value>activemq-ra</activation-config-property-value>
+                </activation-config-property>
+            </activation-config>
+        </message-driven>
+
+    </enterprise-beans>
+
+    <!-- Assembly descriptor -->
+    <assembly-descriptor>
+
+        <!-- Container-managed transactions -->
+        <container-transaction>
+            <method>
+                <ejb-name>*</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+
+    </assembly-descriptor>
+
+</ejb-jar>
