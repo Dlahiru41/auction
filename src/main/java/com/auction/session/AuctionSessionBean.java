@@ -3,11 +3,11 @@ package com.auction.session;
 import com.auction.entity.Auction;
 import com.auction.entity.AuctionStatus;
 import com.auction.entity.User;
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
-import javax.ejb.Stateless;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

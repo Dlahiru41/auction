@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+    <datasource jndi-name="java:/AuctionDB" pool-name="AuctionDB" enabled="true" use-java-context="true">
+        <connection-url>jdbc:h2:mem:auctiondb;DB_CLOSE_DELAY=-1</connection-url>
+        <driver>h2</driver>
+        <security>
+            <user-name>sa</user-name>
+            <password></password>
+        </security>
+    </datasource>
+    <drivers>
+        <driver name="h2" module="com.h2database.h2" slot="main">
+            <driver-class>org.h2.Driver</driver-class>
+        </driver>
+    </drivers>
+</datasources> 

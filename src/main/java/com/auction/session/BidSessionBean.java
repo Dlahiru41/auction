@@ -5,14 +5,14 @@ import com.auction.entity.Bid;
 import com.auction.entity.BidStatus;
 import com.auction.entity.User;
 import com.auction.messaging.BidMessage;
+import jakarta.ejb.*;
+import jakarta.jms.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.jms.*;
+
 import java.lang.IllegalStateException;
 import java.math.BigDecimal;
 import java.util.List;

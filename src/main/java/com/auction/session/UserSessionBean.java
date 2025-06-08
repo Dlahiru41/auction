@@ -10,7 +10,6 @@ import jakarta.persistence.Query;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.ws.rs.core.Response;
 
 @Stateless
 public class UserSessionBean implements UserSessionBeanLocal, UserSessionBeanRemote {

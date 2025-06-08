@@ -1,14 +1,10 @@
 package com.auction.messaging;
 
 import com.auction.session.AuctionManagerSingleton;
+import jakarta.ejb.*;
+import jakarta.jms.*;
 
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.EJB;
-import javax.ejb.MessageDriven;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
+
 import java.util.logging.Logger;
 
 @MessageDriven(

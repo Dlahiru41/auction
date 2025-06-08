@@ -2,8 +2,8 @@ package com.auction.session;
 
 import com.auction.entity.Auction;
 import com.auction.entity.User;
+import jakarta.ejb.Remote;
 
-import javax.ejb.Remote;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

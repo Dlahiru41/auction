@@ -1,8 +1,8 @@
 package com.auction.session;
 
 import com.auction.entity.Bid;
+import jakarta.ejb.Local;
 
-import javax.ejb.Local;
 import java.math.BigDecimal;
 import java.util.List;
 
